@@ -4,10 +4,8 @@ Module.register("MMM-DailyPrayer", {
     // Default module config.
     result: [],
     defaults: {
-        // Default Bible version is ESV.
-        // Change it to a version that BibleGateway.com supports.
-        // https://www.biblegateway.com/usage/linking/versionslist/
-        version: 'ESV'
+        title: 'Beseeching.org',
+        size: 'bright medium'
     },
 
     start: function() {
@@ -40,23 +38,33 @@ Module.register("MMM-DailyPrayer", {
         }
 
         var wrapper = document.createElement("div");
+
+        const title  = document.createElement("div");
         switch (this.config.size) {
             case 'xsmall':
-                wrapper.className = "bright xsmall";
+                title.className = "bright xsmall";
                 break;
             case 'small':
-                wrapper.className = "bright small";
+                title.className = "bright small";
                 break;
             case 'medium':
-                wrapper.className = "bright medium";
+                title.className = "bright medium";
                 break;
             case 'large':
-                wrapper.className = "bright large";
+                title.className = "bright large";
                 break;
             default:
-                wrapper.className = "bright medium";
+                title.className = "bright medium";
         }
-        wrapper.innerHTML = prayer;
+        title.innerHTML = prayer;
+
+        wrapper.appendChild(title)
+
+        const origin = document.createElement("div");
+        origin.classList.add('small');
+        origin.innerHTML = this.config.title;
+        wrapper.appendChild(origin);
+
         return wrapper;
         },
 
