@@ -21,3 +21,7 @@
 .MMM-DailyPrayer .large {
     max-width: 100vh;
 }
+
+.MMM-DailyPrayer .origin {
+    font-size: 12px;
+}
