@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/sham00o/MMM-DailyPrayer#readme",
   "dependencies": {
-    "request": "^2.83.0",
-    "jssoup": "^1.0.0"
+    "jssoup": "^0.0.12",
+    "request": "^2.83.0"
   }
 }

@@ -1,5 +1,5 @@
 /* Magic Mirror
- * Node Helper: MMM-DailyBibleVerse
+ * Node Helper: MMM-DailyPrayer
  *
  * By Arthur Garza
  * MIT Licensed.
@@ -18,7 +18,7 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function(notification, payload) {
 		console.log(this.name + " node helper received a socket notification: " + notification + " - Payload: " + payload);
-		this.bibleGatewayRequest(payload);
+		this.prayerRequest(payload);
 	},
 
 	prayerRequest: function() {
