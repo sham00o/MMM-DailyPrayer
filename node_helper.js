@@ -35,12 +35,20 @@ module.exports = NodeHelper.create({
 				request({ url: link, method: 'GET' }, function(error, response, body) {
 					if(!error && response.statusCode == 200){
 						var soup = new JSSoup(body);
+						// extract heading
+						header = soup.find("header", {"class": "fl-post-header"})
+
 						// extract content
 						body = soup.find("div", {"class": "fl-post-content"})
-						contents = body.toString()
+						var contents = []
+						for (var each of body.contents) {
+							var text = each.text.toLowerCase()
+							if (text.includes('hymns') || text.includes('ministry portion')) break
+							contents.push(each.toString())
+						}
 						var result = {
-							title: anchor.attrs.title,
-							body: contents
+							title: header.toString(),
+							body: contents.join()
 						}
 						self.sendSocketNotification('PRAYER_RESULT', result);
 					}
