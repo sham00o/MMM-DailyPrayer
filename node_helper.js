@@ -22,6 +22,7 @@ module.exports = NodeHelper.create({
 	},
 
 	prayerRequest: function() {
+		var self = this;
 		var url = 'https://beseeching.org/pray/'
 
 		request({ url: url, method: 'GET' }, function(error, response, body) {
@@ -29,7 +30,6 @@ module.exports = NodeHelper.create({
 				var soup = new JSSoup(body);
 				post = soup.find("h2", {"class": "fl-post-feed-title"})
 				anchor = post.nextElement
-				console.log(anchor.attrs)
 				var result = anchor.attrs.title
 				self.sendSocketNotification('PRAYER_RESULT', result);
 			}
