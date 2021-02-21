@@ -27,13 +27,10 @@ module.exports = NodeHelper.create({
 		request({ url: url, method: 'GET' }, function(error, response, body) {
 			if(!error && response.statusCode == 200){
 				var soup = new JSSoup(body);
-				console.log(body);
-				console.log(soup)
 				post = soup.find("h2", {"class": "fl-post-feed-title"})
-				console.log(post)
-				console.log(post.a)
-				console.log(post.a.attrs)
-				var result = post.a.attrs.title
+				anchor = pos.nextElement
+				console.log(anchor.attrs)
+				var result = anchor.attrs.title
 				self.sendSocketNotification('PRAYER_RESULT', result);
 			}
 		});
