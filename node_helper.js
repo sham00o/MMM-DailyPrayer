@@ -28,7 +28,7 @@ module.exports = NodeHelper.create({
 			if(!error && response.statusCode == 200){
 				var soup = new JSSoup(body);
 				post = soup.find("h2", {"class": "fl-post-feed-title"})
-				anchor = pos.nextElement
+				anchor = post.nextElement
 				console.log(anchor.attrs)
 				var result = anchor.attrs.title
 				self.sendSocketNotification('PRAYER_RESULT', result);
