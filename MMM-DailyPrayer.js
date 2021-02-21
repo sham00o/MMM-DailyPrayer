@@ -5,7 +5,8 @@ Module.register("MMM-DailyPrayer", {
     result: [],
     defaults: {
         title: 'Beseeching.org',
-        size: 'bright small'
+        size: 'bright small',
+        showDetails: false
     },
 
     start: function() {
@@ -27,19 +28,27 @@ Module.register("MMM-DailyPrayer", {
         return ["MMM-DailyPrayer.css"];
     },
 
+    getScripts: function() {
+        return [
+            this.file('jquery-3.1.1.min.js'), // this file will be loaded straight from the module folder.
+        ]
+    },
+
     // Override dom generator.
     getDom: function() {
         Log.log("Updating MMM-DailyPrayer DOM.");
 
         var prayer = "";
+        var description = "";
 
-        if(this.prayerOfTheDay != null){
+        if(this.prayerOfTheDay != null && this.prayerDescription != null){
             prayer = this.prayerOfTheDay;
+            description = this.prayerDescription;
         }
 
         var wrapper = document.createElement("div");
         wrapper.className = 'large';
-        
+
         const origin = document.createElement("div");
         origin.className = 'dimmed xsmall';
         origin.innerHTML = this.config.title;
@@ -65,20 +74,22 @@ Module.register("MMM-DailyPrayer", {
         title.innerHTML = prayer;
         wrapper.appendChild(title)
 
-        return wrapper;
-        },
+        if (this.config.showDetails) {
+          const body  = document.createElement("div");
+          body.className = !this.config.size ? "medium" : this.config.size
+          body.innerHTML = prayerDescription;
+          wrapper.appendChild(body)
+        }
 
-    getScripts: function() {
-        return [
-            this.file('jquery-3.1.1.min.js'), // this file will be loaded straight from the module folder.
-        ]
-    },
+        return wrapper;
+      },
 
     socketNotificationReceived: function(notification, payload) {
         Log.log("socket received from Node Helper");
         if(notification == "PRAYER_RESULT"){
             Log.log(payload);
-            this.prayerOfTheDay = payload;
+            this.prayerOfTheDay = payload.title;
+            this.prayerDescription = payload.body;
 
             this.updateDom();
         }
