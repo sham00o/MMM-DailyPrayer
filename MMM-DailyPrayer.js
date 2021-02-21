@@ -77,7 +77,7 @@ Module.register("MMM-DailyPrayer", {
         if (this.config.showDetails) {
           const body  = document.createElement("div");
           body.className = !this.config.size ? "medium" : this.config.size
-          body.innerHTML = prayerDescription;
+          body.innerHTML = description;
           wrapper.appendChild(body)
         }
 
