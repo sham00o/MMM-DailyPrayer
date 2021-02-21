@@ -46,37 +46,40 @@ Module.register("MMM-DailyPrayer", {
             description = this.prayerDescription;
         }
 
+        var sharedClass = this.config.showDetails ? ' expanded' : ''
+
         var wrapper = document.createElement("div");
         wrapper.className = 'large';
 
         const origin = document.createElement("div");
-        origin.className = 'dimmed xsmall';
+        origin.className = 'dimmed xsmall' + sharedClass;
         origin.innerHTML = this.config.title;
         wrapper.appendChild(origin);
 
         const title  = document.createElement("div");
         switch (this.config.size) {
             case 'xsmall':
-                title.className = "bright xsmall";
+                title.className = "bright xsmall" + sharedClass;
                 break;
             case 'small':
-                title.className = "bright small";
+                title.className = "bright small" + sharedClass;
                 break;
             case 'medium':
-                title.className = "bright medium";
+                title.className = "bright medium" + sharedClass;
                 break;
             case 'large':
-                title.className = "bright large";
+                title.className = "bright large" + sharedClass;
                 break;
             default:
-                title.className = "bright medium";
+                title.className = "bright medium" + sharedClass;
         }
         title.innerHTML = prayer;
         wrapper.appendChild(title)
 
         if (this.config.showDetails) {
           const body  = document.createElement("div");
-          body.className = !this.config.size ? "medium" : this.config.size
+          var size = !this.config.size ? "medium" : this.config.size
+          body.className = 'body ' + size + sharedClass
           body.innerHTML = description;
           wrapper.appendChild(body)
         }

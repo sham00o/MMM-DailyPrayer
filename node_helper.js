@@ -38,7 +38,6 @@ module.exports = NodeHelper.create({
 					title: anchor.attrs.title,
 					body: contents
 				}
-				console.log(result)
 				self.sendSocketNotification('PRAYER_RESULT', result);
 			}
 		});

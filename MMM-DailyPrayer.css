@@ -21,3 +21,11 @@
 .MMM-DailyPrayer .large {
     max-width: 100vh;
 }
+
+.MMM-DailyPrayer .expanded {
+  text-align: left;
+}
+
+.MMM-DailyPrayer .body {
+  margin-top: 10px
+}
