@@ -1,6 +1,6 @@
 //dailybibleverse.js
 
-Module.register("MMM-DailyBibleVerse", {
+Module.register("MMM-DailyPrayer", {
     // Default module config.
     result: [],
     defaults: {
@@ -26,28 +26,17 @@ Module.register("MMM-DailyBibleVerse", {
     },
 
     getStyles: function () {
-        return ["MMM-DailyBibleVerse.css"];
+        return ["MMM-DailyPrayer.css"];
     },
 
     // Override dom generator.
     getDom: function() {
-        Log.log("Updating MMM-DailyBibleVerse DOM.");
+        Log.log("Updating MMM-DailyPrayer DOM.");
 
-        var verse = "";
-        var reference = "";
+        var prayer = "";
 
-        if(this.verseOfTheDay != null && this.reference != null){
-            verse = this.verseOfTheDay;
-
-            // split reference in book and chapter reference, ex. for
-            // input "1 Corinthian 13:6,7" => "1 Corinthian", "13:6,7"
-            reference = this.reference.trim();
-            var lastSpace = reference.lastIndexOf(" ");
-            var book = reference.substring(0, lastSpace);
-            var chapter = reference.substring(lastSpace+1, reference.length);
-
-            // now we build the reference with translated book title
-            reference = " - " + this.translate(book) + " " + chapter;
+        if(this.prayerOfTheDay != null){
+            prayer = this.prayerOfTheDay;
         }
 
         var wrapper = document.createElement("div");
@@ -67,7 +56,7 @@ Module.register("MMM-DailyBibleVerse", {
             default:
                 wrapper.className = "bright medium";
         }
-        wrapper.innerHTML = verse + reference;
+        wrapper.innerHTML = prayer;
         return wrapper;
         },
 
@@ -77,22 +66,11 @@ Module.register("MMM-DailyBibleVerse", {
         ]
     },
 
-    getTranslations: function() {
-        return {
-                de: "translations/de.json",
-                en: "translations/en.json",                
-                es: "translations/es.json",
-                nl: "translations/nl.json",
-        }
-    },
-
     socketNotificationReceived: function(notification, payload) {
         Log.log("socket received from Node Helper");
-        if(notification == "BIBLE_GATEWAY_RESULT"){
-            var json = payload;
+        if(notification == "PRAYER_RESULT"){
             Log.log(payload);
-            this.verseOfTheDay = json.votd.text;
-            this.reference = json.votd.reference;
+            this.prayerOfTheDay = payload;
 
             this.updateDom();
         }
