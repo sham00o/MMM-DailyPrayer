@@ -38,7 +38,8 @@ Module.register("MMM-DailyPrayer", {
         }
 
         var wrapper = document.createElement("div");
-
+        wrapper.className = 'large';
+        
         const origin = document.createElement("div");
         origin.className = 'dimmed xsmall';
         origin.innerHTML = this.config.title;
