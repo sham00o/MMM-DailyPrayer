@@ -5,7 +5,7 @@ Module.register("MMM-DailyPrayer", {
     result: [],
     defaults: {
         title: 'Beseeching.org',
-        size: 'bright medium'
+        size: 'bright small'
     },
 
     start: function() {
@@ -39,6 +39,11 @@ Module.register("MMM-DailyPrayer", {
 
         var wrapper = document.createElement("div");
 
+        const origin = document.createElement("div");
+        origin.className = 'dimmed xsmall';
+        origin.innerHTML = this.config.title;
+        wrapper.appendChild(origin);
+
         const title  = document.createElement("div");
         switch (this.config.size) {
             case 'xsmall':
@@ -57,13 +62,7 @@ Module.register("MMM-DailyPrayer", {
                 title.className = "bright medium";
         }
         title.innerHTML = prayer;
-
         wrapper.appendChild(title)
-
-        const origin = document.createElement("div");
-        origin.classList.add('small');
-        origin.innerHTML = this.config.title;
-        wrapper.appendChild(origin);
 
         return wrapper;
         },
