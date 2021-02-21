@@ -31,11 +31,13 @@ module.exports = NodeHelper.create({
 				title = soup.find("h2", {"class": "fl-post-feed-title"})
 				anchor = title.nextElement
 				body = soup.find("div", {"class": "fl-post-feed-content"})
-				strong = body.nextElement
+				p = body.nextElement
+				strong = p.nextElement
+				contents = strong.contents.map(it => it.string).join()
 				console.log(strong)
 				var result = {
 					title: anchor.attrs.title,
-					body: strong.string
+					body: contents
 				}
 				self.sendSocketNotification('PRAYER_RESULT', result);
 			}
