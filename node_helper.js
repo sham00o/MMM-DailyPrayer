@@ -30,7 +30,10 @@ module.exports = NodeHelper.create({
 				console.log(body);
 				console.log(soup)
 				post = soup.find("h2", {"class": "fl-post-feed-title"})
-				var result = post.a["title"]
+				console.log(post)
+				console.log(post.a)
+				console.log(post.a.attrs)
+				var result = post.a.attrs.title
 				self.sendSocketNotification('PRAYER_RESULT', result);
 			}
 		});
