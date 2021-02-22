@@ -4,23 +4,11 @@
     max-height: 100vh;
 }
 
-.MMM-DailyPrayer .xsmall,
-.MMM-DailyPrayer .default {
-    max-width: 50vh;
-}
-
-.MMM-DailyPrayer .small {
-    max-width: 60vh;
-}
-
-.MMM-DailyPrayer .medium {
-    max-width: 75vh;
-}
-
-.MMM-DailyPrayer .large {
-    max-width: 100vh;
+.MMM-DailyPrayer .header {
+    line-height: 75px;
+    font-size: 65px;
 }
 
 .MMM-DailyPrayer .body {
-  margin-top: 10px
+    margin-top: 10px
 }
