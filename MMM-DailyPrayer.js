@@ -61,7 +61,7 @@ Module.register("MMM-DailyPrayer", {
 
         const title  = document.createElement("div");
 	      title.innerHTML = prayer;
-        title.className = 'bright small' + alignment;
+        title.className = 'bright medium' + alignment;
         wrapper.appendChild(title)
 
         if (this.config.showDetails) {
