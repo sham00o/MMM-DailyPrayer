@@ -6,6 +6,7 @@ Module.register("MMM-DailyPrayer", {
     defaults: {
         title: 'Beseeching.org',
         size: 'bright small',
+        alignment: None,
         showDetails: false
     },
 
@@ -46,24 +47,25 @@ Module.register("MMM-DailyPrayer", {
             description = this.prayerDescription;
         }
 
-        var sharedClass = this.config.showDetails ? ' expanded' : ''
+        var alignment = this.config.alignment ? ' '+this.config.alignment : ''
 
         var wrapper = document.createElement("div");
         wrapper.className = 'large';
 
         const origin = document.createElement("div");
-        origin.className = 'dimmed xsmall' + sharedClass;
+        origin.className = 'dimmed xsmall' + alignment;
         origin.innerHTML = this.config.title;
         wrapper.appendChild(origin);
 
         const title  = document.createElement("div");
+        title.className = alignment;
         title.innerHTML = prayer;
         wrapper.appendChild(title)
 
         if (this.config.showDetails) {
           const body  = document.createElement("div");
           var size = !this.config.size ? "medium" : this.config.size
-          body.className = 'body ' + size + sharedClass
+          body.className = 'body ' + size + alignment
           body.innerHTML = description;
           wrapper.appendChild(body)
         }
