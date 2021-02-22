@@ -1,7 +1,7 @@
 /* Magic Mirror
  * Node Helper: MMM-DailyPrayer
  *
- * By Arthur Garza
+ * By Samuel Liu
  * MIT Licensed.
  */
 
