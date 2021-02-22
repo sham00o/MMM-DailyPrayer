@@ -61,13 +61,13 @@ Module.register("MMM-DailyPrayer", {
 
         const title  = document.createElement("div");
 	      title.innerHTML = prayer;
-        title.className = 'header' + alignment;
+        title.className = 'bright small' + alignment;
         wrapper.appendChild(title)
 
         if (this.config.showDetails) {
           const date  = document.createElement("div");
           date.innerHTML = day;
-          date.className = 'xsmall thin' + alignment;
+          date.className = 'xsmall' + alignment;
           wrapper.appendChild(date)
 
           const body  = document.createElement("div");
