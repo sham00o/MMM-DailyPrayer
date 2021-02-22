@@ -41,10 +41,12 @@ Module.register("MMM-DailyPrayer", {
 
         var prayer = "";
         var description = "";
+        var day = ""
 
-        if(this.prayerOfTheDay != null && this.prayerDescription != null){
+        if(this.prayerOfTheDay != null && this.prayerDescription != null && this.prayerDay != null) {
             prayer = this.prayerOfTheDay;
             description = this.prayerDescription;
+            day = this.prayerDay;
         }
 
 	var size = this.config.size
@@ -58,11 +60,16 @@ Module.register("MMM-DailyPrayer", {
         wrapper.appendChild(origin);
 
         const title  = document.createElement("div");
-	title.innerHTML = prayer;
+	      title.innerHTML = prayer;
         title.className = 'header' + alignment;
         wrapper.appendChild(title)
 
         if (this.config.showDetails) {
+          const date  = document.createElement("div");
+          date.innerHTML = day;
+          date.className = 'xsmall thin' + alignment;
+          wrapper.appendChild(date)
+
           const body  = document.createElement("div");
           var size = !this.config.size ? "medium" : this.config.size
           body.className = 'body ' + size + alignment
@@ -78,6 +85,7 @@ Module.register("MMM-DailyPrayer", {
         if(notification == "PRAYER_RESULT"){
             Log.log(payload);
             this.prayerOfTheDay = payload.title;
+            this.prayerDay = payload.date;
             this.prayerDescription = payload.body;
 
             this.updateDom();
