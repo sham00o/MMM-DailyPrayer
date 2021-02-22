@@ -57,22 +57,6 @@ Module.register("MMM-DailyPrayer", {
         wrapper.appendChild(origin);
 
         const title  = document.createElement("div");
-        switch (this.config.size) {
-            case 'xsmall':
-                title.className = "bright xsmall" + sharedClass;
-                break;
-            case 'small':
-                title.className = "bright small" + sharedClass;
-                break;
-            case 'medium':
-                title.className = "bright medium" + sharedClass;
-                break;
-            case 'large':
-                title.className = "bright large" + sharedClass;
-                break;
-            default:
-                title.className = "bright medium" + sharedClass;
-        }
         title.innerHTML = prayer;
         wrapper.appendChild(title)
 

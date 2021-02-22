@@ -41,11 +41,11 @@ module.exports = NodeHelper.create({
 						// extract content
 						body = soup.find("div", {"class": "fl-post-content"})
 						var contents = []
-						for (var each of body.contents) {
+						for (var [index, each] of body.contents.entries()) {
 							var text = each.text.toLowerCase()
 							if (text.includes('hymns') || text.includes('ministry portion')) break
 							var sup = each.find("sup")
-							if (sup) continue
+							if (sup && index != 0) continue
 							contents.push(each.toString())
 						}
 						var result = {
