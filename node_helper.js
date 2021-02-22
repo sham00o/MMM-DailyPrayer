@@ -44,11 +44,13 @@ module.exports = NodeHelper.create({
 						for (var each of body.contents) {
 							var text = each.text.toLowerCase()
 							if (text.includes('hymns') || text.includes('ministry portion')) break
+							var sup = each.find("sup")
+							if (sup) continue
 							contents.push(each.toString())
 						}
 						var result = {
 							title: header.toString(),
-							body: contents.join()
+							body: contents.join('')
 						}
 						self.sendSocketNotification('PRAYER_RESULT', result);
 					}
