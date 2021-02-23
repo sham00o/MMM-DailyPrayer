@@ -42,7 +42,7 @@ module.exports = NodeHelper.create({
 						var contents = []
 						for (var [index, each] of body.contents.entries()) {
 							var text = each.text.toLowerCase()
-							if (text.includes('hymns') || text.includes('ministry portion')) break
+							if (text.includes('ministry portion')) break
 							var sup = each.find("sup")
 							if (sup && index != 0) continue
 							contents.push(each.toString())

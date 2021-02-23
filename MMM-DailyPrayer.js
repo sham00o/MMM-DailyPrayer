@@ -5,7 +5,8 @@ Module.register("MMM-DailyPrayer", {
     result: [],
     defaults: {
         title: 'Beseeching.org',
-        size: 'bright small',
+        titleSize: 'bright small',
+        bodySize: 'small',
         alignment: null,
         showDetails: false
     },
@@ -49,7 +50,6 @@ Module.register("MMM-DailyPrayer", {
             day = this.prayerDay;
         }
 
-	var size = this.config.size
         var alignment = this.config.alignment ? ' '+this.config.alignment : ''
 
         var wrapper = document.createElement("div");
@@ -61,7 +61,7 @@ Module.register("MMM-DailyPrayer", {
 
         const title  = document.createElement("div");
 	      title.innerHTML = prayer;
-        title.className = 'bright medium' + alignment;
+        title.className = 'bright ' + this.config.titleSize + alignment;
         wrapper.appendChild(title)
 
         if (this.config.showDetails) {
@@ -71,8 +71,7 @@ Module.register("MMM-DailyPrayer", {
           wrapper.appendChild(date)
 
           const body  = document.createElement("div");
-          var size = !this.config.size ? "medium" : this.config.size
-          body.className = 'body ' + size + alignment
+          body.className = 'body ' + this.config.bodySize + alignment
           body.innerHTML = description;
           wrapper.appendChild(body)
         }
