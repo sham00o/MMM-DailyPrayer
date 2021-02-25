@@ -18,11 +18,11 @@ Module.register("MMM-DailyPrayer", {
         var configuredVersion = this.config.version;
 
         //Do this once first
-        self.sendSocketNotification('START', configuredVersion);
+        self.sendSocketNotification('GET_PRAYER', configuredVersion);
 
         //Then every hour
         setInterval(function() {
-                self.sendSocketNotification('START', configuredVersion);
+                self.sendSocketNotification('GET_PRAYER', configuredVersion);
         }, 3600000); //perform every hour (3600000 milliseconds)
     },
 
